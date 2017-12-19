@@ -1,1 +1,4 @@
+<select #langSelect (change)="translate.use(langSelect.value)">
+  <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ getLanguageName(lang) }}</option>
+</select>
 <router-outlet></router-outlet>

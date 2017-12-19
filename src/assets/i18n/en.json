@@ -1,0 +1,12 @@
+{
+  "AUTH" : {
+    "LOGIN": {
+      "TITLE" : "Connection",
+      "EMAIL": "Email",
+      "PASSWORD": "Password",
+      "SUBMIT": "Connection"
+    },
+    "PASSWORD_FORGOTTEN" : "Password forgotten"
+
+  }
+}

@@ -1,4 +1,9 @@
-<form #login (submit)="submitForm(login)">
-
-
+<form #loginForm (submit)="submitForm(loginForm)">
+  <h1>{{ 'AUTH.LOGIN.TITLE' | translate}}</h1>
+  <div class="bg-light">
+    <input class="form-control" type="email" name="email" placeholder="{{ 'AUTH.LOGIN.EMAIL' | translate}}">
+    <input class="form-control" type="password" name="password" placeholder="{{ 'AUTH.LOGIN.PASSWORD' | translate}}">
+    <a routerLink="/forgot">{{ 'AUTH.LOGIN.PASSWORD_FORGOTTEN' | translate}}</a>
+    <input class="btn btn-primary" type="submit" value="{{ 'LOGIN.SUBMIT' | translate}}">
+  </div>
 </form>
