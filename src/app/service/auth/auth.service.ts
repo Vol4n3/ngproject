@@ -1,15 +1,24 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {environment} from '../../../environments/environment';
 import {Server} from '../../interface/Server';
 import {ServerService} from '../server/server.service';
 
-
 @Injectable()
 export class AuthService {
-  private uri = environment.serverAddress;
+
+  private static pagesRequiredAuth: string[] = ['/home'];
+  public logged: boolean;
 
   constructor(private http: HttpClient) {
+  }
+
+  static isPageNeedAuth(page: string): boolean {
+    for (const p of AuthService.pagesRequiredAuth) {
+      if (p === page) {
+        return true;
+      }
+    }
+    return false;
   }
 
   static getUser(): Server.Response.IUser {
@@ -24,38 +33,65 @@ export class AuthService {
     localStorage.removeItem('user_auth');
   }
 
-  public logout() {
+  public removeSession(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.post<Server.Response.IResponse>(this.uri, null).subscribe((res) => {
-        if (ServerService.isSuccess(res)) {
-          AuthService.clearUser();
-          resolve();
-        } else {
+      const req: Server.Request.IRequest = ServerService.makeRequestBody(Server.Request.RequestAction.LOGOUT);
+      this.http.post<Server.Response.IResponse>(ServerService.uri, req, ServerService.getOptions())
+        .subscribe((res) => {
+          if (ServerService.isSuccess(res)) {
+            this.logged = false;
+            AuthService.clearUser();
+            resolve();
+          } else {
+            reject();
+          }
+        }, () => {
           reject();
-        }
-      }, () => {
-        reject();
-      });
+        });
     });
   }
 
-  public login(loginData?: Server.Request.ILogin) {
-    const req: Server.Request.IRequest = {
-      action: Server.Request.RequestAction.LOGIN,
-      data: loginData,
-      token: '',
-    };
+  public isLogged(): Promise<any> {
     return new Promise((resolve, reject) => {
-      this.http.post<Server.Response.IResponseUser>(this.uri, req).subscribe((res) => {
-      if (ServerService.isSuccess(res)) {
-          AuthService.setUser(res.data);
-          resolve();
-        } else {
-          reject();
-        }
-      }, () => {
+      const data: Server.Request.IData = {
+        token: AuthService.getUser().token
+      };
+      if (!data) {
         reject();
-      });
+        return;
+      }
+      const req: Server.Request.IRequest = ServerService.makeRequestBody(Server.Request.RequestAction.ISLOGGED, data, data.token);
+      this.http.post<Server.Response.IResponse>(ServerService.uri, req, ServerService.getOptions())
+        .subscribe((res) => {
+          if (ServerService.isSuccess(res)) {
+            this.logged = true;
+            resolve();
+          } else {
+            AuthService.clearUser();
+            reject();
+          }
+        }, () => {
+          AuthService.clearUser();
+          reject();
+        });
+    });
+  }
+
+  public connect(loginData?: Server.Request.ILogin): Promise<any> {
+    return new Promise((resolve, reject) => {
+      const req: Server.Request.IRequest = ServerService.makeRequestBody(Server.Request.RequestAction.LOGIN, loginData);
+      this.http.post<Server.Response.IResponseUser>(ServerService.uri, req, ServerService.getOptions())
+        .subscribe((res) => {
+          if (ServerService.isSuccess(res)) {
+            this.logged = true;
+            AuthService.setUser(res.data);
+            resolve();
+          } else {
+            reject();
+          }
+        }, () => {
+          reject();
+        });
     });
   }
 

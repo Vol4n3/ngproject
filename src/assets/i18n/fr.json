@@ -1,9 +1,12 @@
 {
-  "LOGIN": {
-    "TITLE" : "Connexion",
-    "EMAIL": "Email",
-    "PASSWORD": "Mot de passe",
-    "SUBMIT": "Connexion",
+  "AUTH" : {
+    "LOGIN": {
+      "TITLE" : "Connexion",
+      "EMAIL": "Email",
+      "PASSWORD": "Mot de passe",
+      "SUBMIT": "Connexion"
+    },
     "PASSWORD_FORGOTTEN" : "Password forgotten"
+
   }
 }

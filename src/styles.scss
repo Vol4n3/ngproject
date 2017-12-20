@@ -1,2 +1,9 @@
 @import 'variables';
 @import '../node_modules/bootstrap/scss/bootstrap';
+
+html,body{
+  min-height: 100%;
+}
+body{
+  position: relative;
+}

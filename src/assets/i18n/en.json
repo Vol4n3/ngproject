@@ -1,12 +1,14 @@
 {
-  "AUTH" : {
+  "AUTH": {
     "LOGIN": {
-      "TITLE" : "Connection",
+      "TITLE": "Connection",
       "EMAIL": "Email",
       "PASSWORD": "Password",
       "SUBMIT": "Connection"
     },
-    "PASSWORD_FORGOTTEN" : "Password forgotten"
-
+    "PASSWORD_FORGOTTEN": "Password forgotten",
+    "LOGOUT": {
+      "BTN": "Log out"
+    }
   }
 }

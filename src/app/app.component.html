@@ -1,4 +1,38 @@
-<select #langSelect (change)="translate.use(langSelect.value)">
-  <option *ngFor="let lang of translate.getLangs()" [value]="lang" [selected]="lang === translate.currentLang">{{ getLanguageName(lang) }}</option>
-</select>
+<header class="bg-light py-3 px-md-3 px-sm-1 bg-light">
+  <div class="d-flex align-items-center flex-wrap">
+    <div class="logo">
+      <a routerLink="/home">
+        <img src="../assets/img/osmos_header.png" alt="Osmos La santé de vos constructions">
+      </a>
+    </div>
+    <div class="d-flex justify-content-end ml-auto">
+      <div class="dropdown" dropdown>
+        <button dropdownToggle class="btn btn-info dropdown-toggle"
+                href="#"
+                type="button"
+                id="languageSelection"
+                data-toggle="dropdown"
+                aria-haspopup="true"
+                aria-expanded="false">
+          {{ language.getLangName(translate.currentLang)}}
+        </button>
+        <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="languageSelection">
+          <li *ngFor="let lang of translate.getLangs()" role="menuitem">
+            <button class="btn dropdown-item"
+                    [disabled]="lang === translate.currentLang"
+                    type="button"
+                    (click)="translate.use(lang)">
+              {{ language.getLangName(lang) }}
+            </button>
+          </li>
+        </ul>
+      </div>
+      <button type="button" *ngIf="auth.logged" (click)="logout()" class="btn btn-default ml-3">{{'AUTH.LOGOUT.BTN'|
+        translate}}
+      </button>
+    </div>
+  </div>
+
+</header>
+
 <router-outlet></router-outlet>

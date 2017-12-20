@@ -7,37 +7,29 @@ import {BsDropdownModule} from 'ngx-bootstrap';
 import {LoginComponent} from './page/login/login.component';
 import {HttpClient, HttpClientModule} from '@angular/common/http';
 import {HomeComponent} from './page/home/home.component';
-import {RouterModule, Routes} from '@angular/router';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {ForgotComponent} from './page/forgot/forgot.component';
+import {RoutingModule} from './routing/routing.module';
+import { AuthFormDirective } from './directive/auth-form.directive';
 
-const appRoutes: Routes = [
-  {
-    path: 'home', component: HomeComponent
-  },
-  {
-    path: 'login', component: LoginComponent
-  },
-  {
-    path: '', redirectTo: 'home', pathMatch: 'full'
-  },
-  {
-    path: '**', redirectTo: 'home', pathMatch: 'full'
-  }
-];
+
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http);
 }
+
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
-    HomeComponent
+    HomeComponent,
+    ForgotComponent,
+    AuthFormDirective
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes),
+    RoutingModule,
     BsDropdownModule.forRoot(),
     HttpClientModule,
     TranslateModule.forRoot({
@@ -51,4 +43,5 @@ export function HttpLoaderFactory(http: HttpClient) {
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+}

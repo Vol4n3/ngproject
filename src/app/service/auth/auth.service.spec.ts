@@ -1,6 +1,6 @@
-import { TestBed, inject } from '@angular/core/testing';
+import {inject, TestBed} from '@angular/core/testing';
 
-import { AuthService } from './auth.service';
+import {AuthService} from './auth.service';
 
 describe('AuthService', () => {
   beforeEach(() => {
@@ -8,8 +8,14 @@ describe('AuthService', () => {
       providers: [AuthService]
     });
   });
-
-  it('should be created', inject([AuthService], (service: AuthService) => {
-    expect(service).toBeTruthy();
+  it('should be able to connect', inject([AuthService], (done, auth: AuthService) => {
+    auth.connect({
+      email: 'cohen-selmon@osmos-group.com',
+      password: 'Osmos2014'
+    }).then(() => {
+      done();
+    }).catch(() => {
+      done("error");
+    });
   }));
 });
