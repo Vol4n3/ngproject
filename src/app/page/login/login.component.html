@@ -1,26 +1,27 @@
-
-<article class="d-flex justify-content-center pt-5">
-  <div class="bg-light p-3 col-6">
-  <form #loginForm (submit)="submitForm(loginForm)">
-    <h2>{{ 'AUTH.LOGIN.TITLE' | translate}}</h2>
-    <div>
-      <div class="form-group">
-        <label for="login_email">{{ 'AUTH.LOGIN.EMAIL' | translate}}</label>
-        <input class="form-control"
-               id="login_email"
-               type="email" name="email" placeholder="{{ 'AUTH.LOGIN.EMAIL' | translate}}">
+<div class="background">
+  <article class="d-flex justify-content-center pt-5">
+    <div class="bg-light p-sm-4 p-2 col-sm-6 col-10">
+    <form #loginForm (submit)="submitForm(loginForm)">
+      <h2>{{ 'AUTH.LOGIN.TITLE' | translate}}</h2>
+      <div>
+        <div class="form-group">
+          <label for="login_email">{{ 'AUTH.LOGIN.EMAIL' | translate}}</label>
+          <input class="form-control"
+                 id="login_email"
+                 type="email" name="email" placeholder="{{ 'AUTH.LOGIN.EMAIL' | translate}}">
+        </div>
+        <div class="form-group">
+          <label for="login_email">{{ 'AUTH.LOGIN.PASSWORD' | translate}}</label>
+          <input class="form-control"
+                 id="login_password"
+                 type="password" name="password" placeholder="{{ 'AUTH.LOGIN.PASSWORD' | translate}}">
+        </div>
+        <p>
+          <a routerLink="/forgot">{{ 'AUTH.PASSWORD_FORGOTTEN' | translate}}</a>
+        </p>
+        <button mat-raised-button color="primary" type="submit">{{ 'AUTH.LOGIN.SUBMIT' | translate}}</button>
       </div>
-      <div class="form-group">
-        <label for="login_email">{{ 'AUTH.LOGIN.PASSWORD' | translate}}</label>
-        <input class="form-control"
-               id="login_password"
-               type="password" name="password" placeholder="{{ 'AUTH.LOGIN.PASSWORD' | translate}}">
-      </div>
-      <p>
-        <a routerLink="/forgot">{{ 'AUTH.PASSWORD_FORGOTTEN' | translate}}</a>
-      </p>
-      <button class="btn btn-primary" type="submit">{{ 'AUTH.LOGIN.SUBMIT' | translate}}</button>
+    </form>
     </div>
-  </form>
-  </div>
-</article>
+  </article>
+</div>

@@ -12,7 +12,7 @@ import {LanguageService} from './service/language/language.service';
 })
 export class AppComponent implements OnInit {
   public language = LanguageService;
-
+  public selectedLang;
   constructor(public auth: AuthService,
               public translate: TranslateService,
               private router: Router) {
@@ -48,7 +48,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    this.checkAuth();
   }
 
 }

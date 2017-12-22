@@ -11,7 +11,9 @@ import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ForgotComponent} from './page/forgot/forgot.component';
 import {RoutingModule} from './routing/routing.module';
-import { AuthFormDirective } from './directive/auth-form.directive';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {MatSelectModule} from '@angular/material/select';
+import {MatButtonModule, MatInputModule} from '@angular/material';
 
 
 // AoT requires an exported function for factories
@@ -24,12 +26,14 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     LoginComponent,
     HomeComponent,
-    ForgotComponent,
-    AuthFormDirective
+    ForgotComponent
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     RoutingModule,
+    MatInputModule,
+    MatButtonModule,
     BsDropdownModule.forRoot(),
     HttpClientModule,
     TranslateModule.forRoot({
