@@ -12,7 +12,7 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ForgotComponent} from './page/forgot/forgot.component';
 import {RoutingModule} from './routing/routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatDialogModule, MatInputModule} from '@angular/material';
+import {MatButtonModule, MatDialogModule, MatInputModule, MatPaginator, MatPaginatorModule, MatTableModule} from '@angular/material';
 import { ProjectsComponent } from './page/projects/projects.component';
 import { NavMenuComponent } from './component/nav-menu/nav-menu.component';
 import { NotFoundComponent } from './page/not-found/not-found.component';
@@ -39,6 +39,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatInputModule,
     MatButtonModule,
     MatDialogModule,
+    MatTableModule,
+    MatPaginatorModule,
     BsDropdownModule.forRoot(),
     HttpClientModule,
     TranslateModule.forRoot({

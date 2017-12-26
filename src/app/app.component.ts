@@ -3,19 +3,22 @@ import {AuthService} from './service/auth/auth.service';
 import {TranslateService} from '@ngx-translate/core';
 import {NavigationStart, Router} from '@angular/router';
 import {LanguageService} from './service/language/language.service';
+import {ProjectService} from './service/project/project.service';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [AuthService]
+  providers: [AuthService, ProjectService]
 })
 export class AppComponent implements OnInit {
   public language = LanguageService;
   public selectedLang;
+
   constructor(public auth: AuthService,
               public translate: TranslateService,
-              private router: Router) {
+              private router: Router,
+              private projectService: ProjectService) {
     /**
      * https://github.com/ngx-translate/core
      */

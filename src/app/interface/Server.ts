@@ -6,7 +6,8 @@ export namespace Server {
     export enum RequestAction {
       LOGIN = 'login',
       LOGOUT = 'logout',
-      ISLOGGED = 'stilllogged'
+      ISLOGGED = 'stilllogged',
+      GETPROJECTS = 'getprojects'
     }
 
     export interface IOptions {
@@ -36,6 +37,14 @@ export namespace Server {
       email: string;
       password: string;
     }
+
+    export interface IGetProjects extends IData {
+      search?: string;
+      first?: number;
+      count?: number;
+      levelkeyid?: number;
+      includeinactive?: boolean;
+    }
   }
   export namespace Response {
     export interface IResponse {
@@ -61,6 +70,38 @@ export namespace Server {
       active: number;
       production: number;
       token: string;
+    }
+
+    export interface IResponseProjects extends IResponse {
+      data: IProjectsRecords;
+    }
+
+    export interface IProjectsRecords {
+      count: number;
+      records: IProject[];
+    }
+
+    export interface IProject {
+      address1?: string;
+      address2?: string;
+      city?: string;
+      clientsendexpiration?: boolean;
+      code?: string;
+      country?: string;
+      dateend?: string;
+      datestart?: string;
+      installersendexpiration?: boolean;
+      latitude?: number;
+      levelkeyid?: number;
+      longitude?: number;
+      name?: string;
+      notes?: number;
+      osmossendexpiration?: boolean;
+      place?: string;
+      projectkeyid?: number;
+      toanalyse?: number;
+      zipcode?: number;
+      zoom?: number;
     }
   }
 }
