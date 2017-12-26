@@ -2,7 +2,8 @@
   <div class="d-flex align-items-center flex-wrap">
     <div class="logo">
       <a routerLink="/home">
-        <img src="../assets/img/osmos_header.png" alt="Osmos La santé de vos constructions">
+        <img *ngIf="translate.currentLang === 'en'" src="../assets/img/header/osmos_header_en.png" alt="Osmos La santé de vos constructions">
+        <img *ngIf="translate.currentLang === 'fr'" src="../assets/img/header/osmos_header_fr.png" alt="Osmos Structural health monitoring">
       </a>
     </div>
     <div class="d-flex justify-content-end ml-auto">
@@ -34,12 +35,12 @@
           </li>
         </ul>
       </div>
-      <button type="button" *ngIf="auth.logged" (click)="logout()" mat-raised-button class="ml-3">{{'AUTH.LOGOUT.BTN'|
-        translate}}
+      <button type="button" *ngIf="auth.logged" (click)="logout()" mat-raised-button class="ml-3">
+        {{'AUTH.LOGOUT.BTN'| translate}}
       </button>
     </div>
   </div>
 
 </header>
-
+<app-nav-menu *ngIf="auth.logged"></app-nav-menu>
 <router-outlet></router-outlet>

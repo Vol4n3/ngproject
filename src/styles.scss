@@ -14,8 +14,8 @@ body {
   font-size: inherit;
 }
 
-.btn, .dropdown-menu, .form-control {
-  border-radius: 0;
+.btn, .dropdown-menu, .form-control, .mat-button, .mat-fab, .mat-icon-button, .mat-mini-fab, .mat-raised-button {
+  border-radius: 0!important;
 }
 
 
@@ -48,4 +48,3 @@ body {
     font-size: 0.80rem;
   }
 }
-

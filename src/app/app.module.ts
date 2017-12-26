@@ -12,9 +12,10 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ForgotComponent} from './page/forgot/forgot.component';
 import {RoutingModule} from './routing/routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatSelectModule} from '@angular/material/select';
-import {MatButtonModule, MatInputModule} from '@angular/material';
-
+import {MatButtonModule, MatDialogModule, MatInputModule} from '@angular/material';
+import { ProjectsComponent } from './page/projects/projects.component';
+import { NavMenuComponent } from './component/nav-menu/nav-menu.component';
+import { NotFoundComponent } from './page/not-found/not-found.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -26,7 +27,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     AppComponent,
     LoginComponent,
     HomeComponent,
-    ForgotComponent
+    ForgotComponent,
+    ProjectsComponent,
+    NavMenuComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,
@@ -34,6 +38,7 @@ export function HttpLoaderFactory(http: HttpClient) {
     RoutingModule,
     MatInputModule,
     MatButtonModule,
+    MatDialogModule,
     BsDropdownModule.forRoot(),
     HttpClientModule,
     TranslateModule.forRoot({

@@ -4,6 +4,8 @@ import {HomeComponent} from '../page/home/home.component';
 import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from '../page/login/login.component';
 import {ForgotComponent} from '../page/forgot/forgot.component';
+import {ProjectsComponent} from '../page/projects/projects.component';
+import {NotFoundComponent} from '../page/not-found/not-found.component';
 const appRoutes: Routes = [
   {
     path: 'home', component: HomeComponent
@@ -15,10 +17,16 @@ const appRoutes: Routes = [
     path: 'login', component: LoginComponent
   },
   {
+    path: 'projects', component: ProjectsComponent
+  },
+  {
+    path: '404', component: NotFoundComponent
+  },
+  {
     path: '', redirectTo: 'home', pathMatch: 'full'
   },
   {
-    path: '**', redirectTo: 'home', pathMatch: 'full'
+    path: '**', redirectTo: '404', pathMatch: 'full'
   }
 ];
 

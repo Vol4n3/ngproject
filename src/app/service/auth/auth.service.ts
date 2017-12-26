@@ -6,21 +6,19 @@ import {ServerService} from '../server/server.service';
 @Injectable()
 export class AuthService {
 
-  private static pagesRequiredAuth: string[] = ['/home'];
+  private static pagesRequiredAuth: string[] = ['/home', '/projects'];
+  private static pagesRequiredAdmin: string[] = [];
   public logged: boolean;
 
   constructor(private http: HttpClient) {
   }
 
   static isPageNeedAuth(page: string): boolean {
-    for (const p of AuthService.pagesRequiredAuth) {
-      if (p === page) {
-        return true;
-      }
-    }
-    return false;
+    return (AuthService.pagesRequiredAuth.indexOf(page) !== -1);
   }
-
+  static isPageNeedAdmin(page: string): boolean {
+    return (AuthService.pagesRequiredAdmin.indexOf(page) !== -1);
+  }
   static getUser(): Server.Response.IUser {
     return <Server.Response.IUser> JSON.parse(localStorage.getItem('user_auth'));
   }
