@@ -10,5 +10,15 @@
     "LOGOUT": {
       "BTN": "Log out"
     }
+  },
+  "PROJECTS": {
+    "CODE": "Code",
+    "NAME": "Name",
+    "PLACE": "Place",
+    "START": "Date Start",
+    "END": "Date End",
+    "COUNTRY": "Country",
+    "CITY": "City",
+    "DETAILS": "Details"
   }
 }

@@ -1,46 +1,50 @@
-<header class="bg-light py-3 px-1 px-sm-3 bg-light">
-  <div class="d-flex align-items-center flex-wrap">
-    <div class="logo">
-      <a routerLink="/home">
-        <img *ngIf="translate.currentLang === 'en'" src="../assets/img/header/osmos_header_en.png" alt="Osmos La santé de vos constructions">
-        <img *ngIf="translate.currentLang === 'fr'" src="../assets/img/header/osmos_header_fr.png" alt="Osmos Structural health monitoring">
-      </a>
-    </div>
-    <div class="d-flex justify-content-end ml-auto">
-      <div class="dropdown" dropdown>
-        <button mat-raised-button dropdownToggle class="btn btn-info dropdown-toggle"
-                style="color: white"
-                href="#"
-                type="button"
-                id="languageSelection"
-                data-toggle="dropdown"
-                aria-haspopup="true"
-                aria-expanded="false">
-          {{ language.getLangName(translate.currentLang)}}
-        </button>
-        <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="languageSelection">
-          <li *ngFor="let lang of translate.getLangs()"
-              role="menuitem">
-
-            <button class="col-12 d-flex align-items-center"
-                    mat-button
-                    [disabled]="lang === translate.currentLang"
-                    type="button"
-                    (click)="translate.use(lang)">
-              <span class="col-2">
-                <img width="30" height="18" [src]="language.getFlagImageUri(lang)" [alt]="lang + 'flag'">
-              </span>
-              {{ language.getLangName(lang) }}
-            </button>
-          </li>
-        </ul>
+<main class="d-flex flex-column">
+  <header class="bg-light py-3 px-1 px-sm-3 bg-light">
+    <div class="d-flex align-items-center flex-wrap">
+      <div class="logo">
+        <a routerLink="/home">
+          <img *ngIf="translate.currentLang === 'en'" src="../assets/img/header/osmos_header_en.png" alt="Osmos La santé de vos constructions">
+          <img *ngIf="translate.currentLang === 'fr'" src="../assets/img/header/osmos_header_fr.png" alt="Osmos Structural health monitoring">
+        </a>
       </div>
-      <button type="button" *ngIf="auth.logged" (click)="logout()" mat-raised-button class="ml-3">
-        {{'AUTH.LOGOUT.BTN'| translate}}
-      </button>
-    </div>
-  </div>
+      <div class="d-flex justify-content-end ml-auto">
+        <div class="dropdown" dropdown>
+          <button mat-raised-button dropdownToggle class="btn btn-info dropdown-toggle"
+                  style="color: white"
+                  href="#"
+                  type="button"
+                  id="languageSelection"
+                  data-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false">
+            {{ language.getLangName(translate.currentLang)}}
+          </button>
+          <ul *dropdownMenu class="dropdown-menu dropdown-menu-right" role="menu" aria-labelledby="languageSelection">
+            <li *ngFor="let lang of translate.getLangs()"
+                role="menuitem">
 
-</header>
-<app-nav-menu *ngIf="auth.logged"></app-nav-menu>
-<router-outlet></router-outlet>
+              <button class="col-12 d-flex align-items-center"
+                      mat-button
+                      [disabled]="lang === translate.currentLang"
+                      type="button"
+                      (click)="translate.use(lang)">
+                <span class="col-2">
+                  <img width="30" height="18" [src]="language.getFlagImageUri(lang)" [alt]="lang + 'flag'">
+                </span>
+                {{ language.getLangName(lang) }}
+              </button>
+            </li>
+          </ul>
+        </div>
+        <button type="button" *ngIf="auth.logged" (click)="logout()" mat-raised-button class="ml-3">
+          {{'AUTH.LOGOUT.BTN'| translate}}
+        </button>
+      </div>
+    </div>
+
+  </header>
+  <app-nav-menu *ngIf="auth.logged"></app-nav-menu>
+  <div class="main-content">
+    <router-outlet></router-outlet>
+  </div>
+</main>

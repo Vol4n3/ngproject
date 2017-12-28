@@ -22,10 +22,6 @@ export class LoginComponent implements OnInit {
     return false;
   }
 
-  ngOnInit() {
-    if (this.auth.logged) {
-      this.router.navigateByUrl('/home');
-    }
-  }
+  ngOnInit() {}
 
 }

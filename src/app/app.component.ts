@@ -4,21 +4,29 @@ import {TranslateService} from '@ngx-translate/core';
 import {NavigationStart, Router} from '@angular/router';
 import {LanguageService} from './service/language/language.service';
 import {ProjectService} from './service/project/project.service';
+import {MatIconRegistry, MatPaginatorIntl} from '@angular/material';
+import {DomSanitizer} from '@angular/platform-browser';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss'],
-  providers: [AuthService, ProjectService]
+  providers: [AuthService, ProjectService, MatPaginatorIntl]
 })
 export class AppComponent implements OnInit {
   public language = LanguageService;
-  public selectedLang;
 
   constructor(public auth: AuthService,
               public translate: TranslateService,
               private router: Router,
-              private projectService: ProjectService) {
+              private intlPaginator: MatPaginatorIntl,
+              private iconRegistry: MatIconRegistry,
+              sanitizer: DomSanitizer) {
+    /**
+     * Icon Registry
+     */
+    iconRegistry.addSvgIcon('edit', sanitizer.bypassSecurityTrustResourceUrl('assets/img/icon/edit.svg'));
+    iconRegistry.addSvgIcon('alert', sanitizer.bypassSecurityTrustResourceUrl('assets/img/icon/alert.svg'));
     /**
      * https://github.com/ngx-translate/core
      */
@@ -27,6 +35,11 @@ export class AppComponent implements OnInit {
 
     const browserLang = translate.getBrowserLang();
     translate.use(browserLang.match(/en|fr|es|it/) ? browserLang : 'en');
+
+    intlPaginator.itemsPerPageLabel = '';
+    /**
+     *Check authentication
+     */
     this.router.events.subscribe((ev) => {
       if (ev instanceof NavigationStart) {
         if (AuthService.isPageNeedAuth(ev.url)) {

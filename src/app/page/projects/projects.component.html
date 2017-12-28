@@ -1,11 +1,58 @@
-<article class="container p-2 bg-light">
+<article class="container p-3 bg-light d-flex flex-column">
   <header>
     <h3 class="text-secondary">Projects list</h3>
-  </header>
-  <section>
 
+  </header>
+    <div class="d-flex">
+      <mat-form-field>
+        <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
+      </mat-form-field>
+    </div>
+  <section>
+    <mat-table #table [dataSource]="dataSource" matSort>
+      <ng-container matColumnDef="code">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'PROJECTS.CODE'| translate }}</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.code}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="name">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'PROJECTS.NAME'| translate }}</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="place">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'PROJECTS.PLACE'| translate }}</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.place}}<br>{{element.city}} {{element.country}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="start">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'PROJECTS.START'| translate }}</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.start}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="end">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'PROJECTS.END'| translate }}</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.end}}</mat-cell>
+      </ng-container>
+      <ng-container matColumnDef="details">
+        <mat-header-cell *matHeaderCellDef mat-sort-header>{{ 'PROJECTS.DETAILS'| translate }}</mat-header-cell>
+        <mat-cell *matCellDef="let element">
+
+          <button mat-icon-button>
+            <mat-icon svgIcon="edit" aria-label="Edit Project" (click)="editProject(element)"></mat-icon>
+          </button>
+          <button mat-icon-button>
+            <mat-icon svgIcon="alert" aria-label="show Alert" (click)="editProject(element)"></mat-icon>
+          </button>
+        </mat-cell>
+      </ng-container>
+      <div class="rows">
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;paginator"></mat-row>
+      </div>
+    </mat-table>
   </section>
   <footer>
-
+    <mat-paginator
+      #paginator
+      [pageSize]="10"
+      [pageSizeOptions]="[10,20,50]"
+      ></mat-paginator>
   </footer>
 </article>

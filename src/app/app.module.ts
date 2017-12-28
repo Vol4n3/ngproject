@@ -12,10 +12,14 @@ import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import {ForgotComponent} from './page/forgot/forgot.component';
 import {RoutingModule} from './routing/routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
-import {MatButtonModule, MatDialogModule, MatInputModule, MatPaginator, MatPaginatorModule, MatTableModule} from '@angular/material';
-import { ProjectsComponent } from './page/projects/projects.component';
-import { NavMenuComponent } from './component/nav-menu/nav-menu.component';
-import { NotFoundComponent } from './page/not-found/not-found.component';
+import {
+  MatButtonModule, MatDialogModule, MatIconModule, MatInputModule, MatPaginatorModule, MatSortModule,
+  MatTableModule
+} from '@angular/material';
+import {ProjectsComponent} from './page/projects/projects.component';
+import {NavMenuComponent} from './component/nav-menu/nav-menu.component';
+import {NotFoundComponent} from './page/not-found/not-found.component';
+import { MainDialogComponent } from './dialog/main-dialog/main-dialog.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -30,7 +34,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ForgotComponent,
     ProjectsComponent,
     NavMenuComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    MainDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -41,6 +46,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatDialogModule,
     MatTableModule,
     MatPaginatorModule,
+    MatSortModule,
+    MatIconModule,
     BsDropdownModule.forRoot(),
     HttpClientModule,
     TranslateModule.forRoot({
@@ -51,8 +58,10 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     })
   ],
+  entryComponents: [MainDialogComponent],
   providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule {
+
 }
