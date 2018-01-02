@@ -19,6 +19,10 @@
     "END": "Date End",
     "COUNTRY": "Country",
     "CITY": "City",
-    "DETAILS": "Details"
+    "DETAILS": "Details",
+    "EDIT" : "Edit Project : {{name}}",
+    "ALARMS_EDIT" : "Edit Alarm : {{name}}",
+    "INCLUDE_INACTIVE": "Include inactive Projects",
+    "ID": "Id"
   }
 }

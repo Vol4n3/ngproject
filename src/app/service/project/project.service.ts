@@ -18,7 +18,7 @@ export class ProjectService {
         data,
         AuthService.getUser().token);
       this.http.post<Server.Response.IResponseProjects>(ServerService.uri, req, ServerService.getOptions())
-        .subscribe((res) => {
+        .subscribe((res: Server.Response.IResponseProjects) => {
 
           if (ServerService.isSuccess(res)) {
             resolve(res.data);

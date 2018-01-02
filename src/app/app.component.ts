@@ -21,38 +21,52 @@ export class AppComponent implements OnInit {
               private router: Router,
               private intlPaginator: MatPaginatorIntl,
               private iconRegistry: MatIconRegistry,
-              sanitizer: DomSanitizer) {
-    /**
-     * Icon Registry
-     */
-    iconRegistry.addSvgIcon('edit', sanitizer.bypassSecurityTrustResourceUrl('assets/img/icon/edit.svg'));
-    iconRegistry.addSvgIcon('alert', sanitizer.bypassSecurityTrustResourceUrl('assets/img/icon/alert.svg'));
-    /**
-     * https://github.com/ngx-translate/core
-     */
-    translate.setDefaultLang('en');
-    translate.addLangs(['fr']);
-
-    const browserLang = translate.getBrowserLang();
-    translate.use(browserLang.match(/en|fr|es|it/) ? browserLang : 'en');
-
-    intlPaginator.itemsPerPageLabel = '';
-    /**
-     *Check authentication
-     */
-    this.router.events.subscribe((ev) => {
-      if (ev instanceof NavigationStart) {
-        if (AuthService.isPageNeedAuth(ev.url)) {
-          this.checkAuth();
-        }
-      }
-    });
+              private sanitizer: DomSanitizer) {
+    this.isStillLoginEventRegistry();
+    this.importIcons();
+    this.configLang();
   }
 
   public logout() {
     this.auth.removeSession().then(() => {
       this.router.navigateByUrl('/login');
     }).catch(() => {
+    });
+  }
+
+  /**
+   * https://github.com/ngx-translate/core
+   */
+  private configLang(): void {
+    this.translate.setDefaultLang('en');
+    this.translate.addLangs(['fr']);
+
+    const browserLang = this.translate.getBrowserLang();
+    this.translate.use(browserLang.match(/en|fr|es|it/) ? browserLang : 'en');
+
+    this.intlPaginator.itemsPerPageLabel = '';
+  }
+
+  /**
+   * Icon Registry
+   */
+  private importIcons(): void {
+    this.registryIconSvg('edit', 'alert');
+  }
+
+  private registryIconSvg(...names: string[]): void {
+    for (const name of names) {
+      this.iconRegistry.addSvgIcon(name, this.sanitizer.bypassSecurityTrustResourceUrl('assets/img/icon/' + name + '.svg'));
+    }
+  }
+
+  private isStillLoginEventRegistry(): void {
+    this.router.events.subscribe((ev) => {
+      if (ev instanceof NavigationStart) {
+        if (AuthService.isPageNeedAuth(ev.url)) {
+          this.checkAuth();
+        }
+      }
     });
   }
 

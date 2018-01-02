@@ -3,6 +3,8 @@ import {ProjectService} from '../../service/project/project.service';
 import {MatDialog, MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {Server} from '../../interface/Server';
 import {MainDialogComponent} from '../../dialog/main-dialog/main-dialog.component';
+import {Entity} from '../../interface/Entity';
+import {AuthService} from '../../service/auth/auth.service';
 
 interface IProjectGridColumns {
   id: number;
@@ -26,9 +28,19 @@ export class ProjectsComponent implements OnInit, AfterViewInit {
 
   displayedColumns = ['code', 'name', 'place', 'start', 'end', 'details'];
   dataSource = new MatTableDataSource<IProjectGridColumns>();
+  public includeInactive = false;
+  public selectedLevel: number;
+  public levels: Entity.ILevel[];
+  public emptyArray = Array;
 
-  constructor(private projectService: ProjectService, public dialog: MatDialog) {
+  constructor(private projectService: ProjectService, public dialog: MatDialog, private auth: AuthService) {
+    auth.getLevelsList().then((res) => {
+      this.levels = res;
+      this.selectedLevel = (AuthService.getUser().level === 0) ? 1 : AuthService.getUser().level;
+      this.fillTable();
+    }).catch(() => {
 
+    });
   }
 
   applyFilter(filterValue: string) {
@@ -42,7 +54,7 @@ export class ProjectsComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  buildDataSource(projects: Server.Response.IProject[]): void {
+  buildDataSource(projects: Entity.IProject[]): void {
     const data: IProjectGridColumns[] = [];
     for (const project of projects) {
       const columns: IProjectGridColumns = {
@@ -62,25 +74,27 @@ export class ProjectsComponent implements OnInit, AfterViewInit {
 
   editProject(project: IProjectGridColumns) {
     const dialogRef = this.dialog.open(MainDialogComponent, {
-      width: '250px',
-      data: { type: "project", projectId: project.id }
+      data: {type: 'project', projectId: project.id}
     });
     dialogRef.afterClosed().subscribe(result => {
       console.log('The dialog was closed');
     });
   }
 
-  ngOnInit() {
-
+  fillTable(): void {
     this.projectService.getProjectsList({
-      includeinactive: true,
-      levelkeyid: 1
+      includeinactive: this.includeInactive,
+      levelkeyid: this.selectedLevel
     }).then((res: Server.Response.IProjectsRecords) => {
       this.buildDataSource(res.records);
 
     }).catch(() => {
 
     });
+  }
+
+  ngOnInit() {
+
   }
 
 }

@@ -1,5 +1,6 @@
 import {HttpParams} from '@angular/common/http/src/params';
 import {HttpHeaders} from '@angular/common/http/src/headers';
+import {Entity} from './Entity';
 
 export namespace Server {
   export namespace Request {
@@ -7,7 +8,9 @@ export namespace Server {
       LOGIN = 'login',
       LOGOUT = 'logout',
       ISLOGGED = 'stilllogged',
-      GETPROJECTS = 'getprojects'
+      GETPROJECTS = 'getprojects',
+      EDITPROJECT = 'editproject',
+      GETLISTLEVELS = 'getlistlevels'
     }
 
     export interface IOptions {
@@ -45,6 +48,20 @@ export namespace Server {
       levelkeyid?: number;
       includeinactive?: boolean;
     }
+
+    export interface IEditProject extends IData, Entity.IProject {
+      analyseproject: boolean;
+      clientkeyid: number;
+      clients: Entity.IClient[];
+      context: any[];
+      inclino: Entity.IInclino[];
+      installers: number[];
+      liris: Entity.ILiris[];
+      locations: number[];
+      spcu: Entity.ISpcu[];
+      strEndDate: string;
+      strStartDate: string;
+    }
   }
   export namespace Response {
     export interface IResponse {
@@ -54,22 +71,11 @@ export namespace Server {
     }
 
     export interface IResponseUser extends IResponse {
-      data: IUser;
+      data: Entity.IUser;
     }
 
-    export interface IUser {
-      userkeyid: number;
-      levelkeyid: number;
-      levelname: string;
-      level: number;
-      lastname: string;
-      firstname: string;
-      email: string;
-      phone: string;
-      admin: number;
-      active: number;
-      production: number;
-      token: string;
+    export interface IResponseLevels extends IResponse {
+      data: Entity.ILevel[];
     }
 
     export interface IResponseProjects extends IResponse {
@@ -78,30 +84,8 @@ export namespace Server {
 
     export interface IProjectsRecords {
       count: number;
-      records: IProject[];
+      records: Entity.IProject[];
     }
 
-    export interface IProject {
-      address1?: string;
-      address2?: string;
-      city?: string;
-      clientsendexpiration?: boolean;
-      code?: string;
-      country?: string;
-      dateend?: string;
-      datestart?: string;
-      installersendexpiration?: boolean;
-      latitude?: number;
-      levelkeyid?: number;
-      longitude?: number;
-      name?: string;
-      notes?: number;
-      osmossendexpiration?: boolean;
-      place?: string;
-      projectkeyid?: number;
-      toanalyse?: number;
-      zipcode?: number;
-      zoom?: number;
-    }
   }
 }

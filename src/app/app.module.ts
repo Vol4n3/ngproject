@@ -13,13 +13,16 @@ import {ForgotComponent} from './page/forgot/forgot.component';
 import {RoutingModule} from './routing/routing.module';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {
-  MatButtonModule, MatDialogModule, MatIconModule, MatInputModule, MatPaginatorModule, MatSortModule,
-  MatTableModule
+  MatButtonModule, MatCheckboxModule, MatDialogModule, MatFormFieldModule, MatIconModule, MatInputModule, MatPaginatorModule,
+  MatSelectModule, MatSortModule,
+  MatTableModule, MatTooltipModule
 } from '@angular/material';
 import {ProjectsComponent} from './page/projects/projects.component';
 import {NavMenuComponent} from './component/nav-menu/nav-menu.component';
 import {NotFoundComponent} from './page/not-found/not-found.component';
 import { MainDialogComponent } from './dialog/main-dialog/main-dialog.component';
+import {FormsModule} from '@angular/forms';
+import { ProjectFormComponent } from './component/project-form/project-form.component';
 
 // AoT requires an exported function for factories
 export function HttpLoaderFactory(http: HttpClient) {
@@ -35,7 +38,8 @@ export function HttpLoaderFactory(http: HttpClient) {
     ProjectsComponent,
     NavMenuComponent,
     NotFoundComponent,
-    MainDialogComponent
+    MainDialogComponent,
+    ProjectFormComponent
   ],
   imports: [
     BrowserModule,
@@ -48,6 +52,11 @@ export function HttpLoaderFactory(http: HttpClient) {
     MatPaginatorModule,
     MatSortModule,
     MatIconModule,
+    MatTooltipModule,
+    MatCheckboxModule,
+    MatFormFieldModule,
+    FormsModule,
+    MatSelectModule,
     BsDropdownModule.forRoot(),
     HttpClientModule,
     TranslateModule.forRoot({

@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Router} from '@angular/router';
 
 interface INavMenu {
   uri: string;
@@ -13,14 +12,7 @@ interface INavMenu {
 })
 export class NavMenuComponent implements OnInit {
   public navMenu: INavMenu[];
-  public currentPageName: string;
-  constructor(public router: Router) {
-  }
-
-  getNameUri(uri: string): string {
-    return this.navMenu.find((item: INavMenu) => {
-      return item.uri === uri;
-    }).name;
+  constructor() {
   }
 
   ngOnInit() {

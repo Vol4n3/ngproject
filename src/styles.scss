@@ -17,7 +17,9 @@ body {
 .btn, .dropdown-menu, .form-control, .mat-button, .mat-fab, .mat-icon-button, .mat-mini-fab, .mat-raised-button {
   border-radius: 0!important;
 }
-
+mat-table mat-row:nth-child(even){
+  background-color: $light;
+}
 
 @media screen and (max-width: 1440px) {
   html {
