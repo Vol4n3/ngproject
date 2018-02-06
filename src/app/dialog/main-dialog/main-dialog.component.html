@@ -1,10 +1,15 @@
 <article>
   <header>
-
+    <h4 class="text-uppercase mb-3">{{data.type}}: {{data.projectId}}</h4>
   </header>
-  <div>
-    blabla
-  </div>
+  <section>
+    <app-project-form
+      (success)="onNoClick()"
+      (error)="onNoClick()"
+      *ngIf="data.type === 'project'"
+      [projectId]="data.projectId"></app-project-form>
+    <app-project-alert *ngIf="data.type === 'alert'"></app-project-alert>
+  </section>
   <footer>
 
   </footer>

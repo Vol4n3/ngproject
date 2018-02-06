@@ -21,7 +21,7 @@ export namespace Entity {
     locationkeyid: number;
     locationname: string;
     name: string;
-    notes: number;
+    notes: string;
     trigger: number;
     type: number;
     uid: string;
@@ -39,7 +39,7 @@ export namespace Entity {
     liakeyid: number;
     liriskeyid: number;
     name: string;
-    notes: number;
+    notes: string;
   }
 
   export interface ISensors {
@@ -69,7 +69,7 @@ export namespace Entity {
     datestart: string;
     daus: IDaus[];
     name: string;
-    notes: number;
+    notes: string;
     sn: string;
     spakeyid: number;
     spcukeyid: number;
@@ -89,7 +89,7 @@ export namespace Entity {
     levelkeyid: number;
     longitude: number;
     name: string;
-    notes: number;
+    notes: string;
     osmossendexpiration: boolean;
     place: string;
     projectkeyid: number;

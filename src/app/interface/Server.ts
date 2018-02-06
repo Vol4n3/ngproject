@@ -9,6 +9,7 @@ export namespace Server {
       LOGOUT = 'logout',
       ISLOGGED = 'stilllogged',
       GETPROJECTS = 'getprojects',
+      GETPROJECT = 'getproject',
       EDITPROJECT = 'editproject',
       GETLISTLEVELS = 'getlistlevels'
     }
@@ -48,7 +49,9 @@ export namespace Server {
       levelkeyid?: number;
       includeinactive?: boolean;
     }
-
+    export interface IGetProject extends IData {
+      projectkeyid: number;
+    }
     export interface IEditProject extends IData, Entity.IProject {
       analyseproject: boolean;
       clientkeyid: number;
@@ -81,7 +84,9 @@ export namespace Server {
     export interface IResponseProjects extends IResponse {
       data: IProjectsRecords;
     }
-
+    export interface IResponseProject extends IResponse{
+      data: Entity.IProject;
+    }
     export interface IProjectsRecords {
       count: number;
       records: Entity.IProject[];

@@ -24,5 +24,9 @@
     "ALARMS_EDIT" : "Edit Alarm : {{name}}",
     "INCLUDE_INACTIVE": "Include inactive Projects",
     "ID": "Id"
+  },
+  "NAVIGATION": {
+    "PROJECTS": "Projects",
+    "HOME": "Home"
   }
 }

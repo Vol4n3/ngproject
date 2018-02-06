@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
    * Icon Registry
    */
   private importIcons(): void {
-    this.registryIconSvg('edit', 'alert');
+    this.registryIconSvg('edit', 'alert', 'create', 'search');
   }
 
   private registryIconSvg(...names: string[]): void {

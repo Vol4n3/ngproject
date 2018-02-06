@@ -1,11 +1,13 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import {NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
 import {HomeComponent} from '../page/home/home.component';
 import {RouterModule, Routes} from '@angular/router';
 import {LoginComponent} from '../page/login/login.component';
 import {ForgotComponent} from '../page/forgot/forgot.component';
 import {ProjectsComponent} from '../page/projects/projects.component';
 import {NotFoundComponent} from '../page/not-found/not-found.component';
+import {ProjectComponent} from '../page/project/project.component';
+
 const appRoutes: Routes = [
   {
     path: 'home', component: HomeComponent
@@ -19,6 +21,10 @@ const appRoutes: Routes = [
   {
     path: 'projects', component: ProjectsComponent
   },
+  {
+    path: 'project/:id', component: ProjectComponent, pathMatch: 'full'
+  },
+
   {
     path: '404', component: NotFoundComponent
   },
@@ -36,6 +42,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(appRoutes),
   ],
   declarations: [],
-  exports : [RouterModule]
+  exports: [RouterModule]
 })
-export class RoutingModule { }
+export class RoutingModule {
+}

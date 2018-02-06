@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {TranslateService} from '@ngx-translate/core';
 
 interface INavMenu {
   uri: string;
@@ -19,11 +20,11 @@ export class NavMenuComponent implements OnInit {
     this.navMenu = [
       {
         uri: '/home',
-        name: 'Home'
+        name: 'NAVIGATION.HOME'
       },
       {
         uri: '/projects',
-        name: 'Projects'
+        name: 'NAVIGATION.PROJECTS'
       }
     ];
   }

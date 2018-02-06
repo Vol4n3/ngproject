@@ -1,0 +1,71 @@
+<form *ngIf="project" #projectForm (submit)="editProject(projectForm)">
+  <mat-horizontal-stepper>
+    <mat-step class="pt-2">
+      <ng-template matStepLabel>Infos</ng-template>
+      <div class="p-3">
+        <div class="d-flex justify-content-around flex-wrap">
+          <mat-form-field class="col-3">
+            <input matInput placeholder="Code" name="code" [value]="project.code">
+          </mat-form-field>
+          <mat-form-field class="col-8">
+            <input matInput placeholder="Nom" name="name" [value]="project.name">
+          </mat-form-field>
+          <mat-form-field class="col-5">
+            <input matInput [matDatepicker]="dateStart" placeholder="Date Start" [value]="project.datestart">
+            <mat-datepicker-toggle matSuffix [for]="dateStart"></mat-datepicker-toggle>
+            <mat-datepicker #dateStart></mat-datepicker>
+          </mat-form-field>
+          <mat-form-field class="col-5">
+            <input matInput [matDatepicker]="dateEnd" placeholder="Date End" [value]="project.dateend">
+            <mat-datepicker-toggle matSuffix [for]="dateEnd"></mat-datepicker-toggle>
+            <mat-datepicker #dateEnd></mat-datepicker>
+          </mat-form-field>
+        </div>
+        <p class="mb-1">Mail send on expiration:</p>
+        <div class="d-flex justify-content-around flex-wrap">
+          <mat-checkbox [value]="project.clientsendexpiration">Client</mat-checkbox>
+          <mat-checkbox [value]="project.installersendexpiration">Installer</mat-checkbox>
+          <mat-checkbox [value]="project.osmossendexpiration">Contact</mat-checkbox>
+        </div>
+        <div class="d-flex justify-content-around flex-wrap">
+          <mat-form-field class="col-3">
+            <input matInput placeholder="Place" name="place" [value]="project.place">
+          </mat-form-field>
+          <mat-form-field class="col-4">
+            <input matInput placeholder="Address" name="address" [value]="project.address1">
+          </mat-form-field>
+          <mat-form-field class="col-4">
+            <input matInput placeholder="Address2" name="address2" [value]="project.address2">
+          </mat-form-field>
+        </div>
+        <div class="d-flex justify-content-around flex-wrap">
+          <mat-form-field class="col-3">
+            <input matInput placeholder="ZipCode" name="zipcode" [value]="project.zipcode">
+          </mat-form-field>
+          <mat-form-field class="col-3">
+            <input matInput placeholder="City" name="city" [value]="project.city">
+          </mat-form-field>
+          <mat-form-field class="col-3">
+            <input matInput placeholder="Country" name="country" [value]="project.country">
+          </mat-form-field>
+        </div>
+        <mat-form-field class="col-12">
+          <textarea matInput placeholder="Notes" name="notes" [value]="project.notes"></textarea>
+        </mat-form-field>
+        <div class="m-1">
+          <mat-checkbox [value]="project.toanalyse">Include to analyse</mat-checkbox>
+        </div>
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Contacts</ng-template>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>Emplacement</ng-template>
+    </mat-step>
+  </mat-horizontal-stepper>
+  <div class="d-flex justify-content-end">
+    <button type="submit" mat-raised-button class="btn btn-primary">Update</button>
+    <button type="button" mat-raised-button class="btn btn-default" (click)="cancel()">Cancel</button>
+  </div>
+</form>
